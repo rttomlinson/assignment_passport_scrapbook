@@ -1,17 +1,27 @@
 <div class="row">
-    <h1>Welcome to the Jungle</h1>
+    <h1 class="text-center">Welcome to the Jungle</h1>
     <div class="col-sm-6">
         <div>{{currentUser.displayName}}</div>
     </div>
     <div class="col-sm-6">
-    <h2>Connected Accounts</h2>
-        <ul>
+        <ul class="list-group">
+            <li class="list-group-item active">Connected Accounts</li>
             {{#each accounts as |account|}}
-            <li>
-                <div>{{account.name}}</div>
-                {{#if account.authorized}}
-                <a href="{{authPathDelete account.name}}" class="btn btn-danger">unauthorize</a> {{else}}
-                <a href="{{authPath account.name}}" class="btn btn-primary">authorize</a> {{/if}}
+            <li class="list-group-item">
+                {{account.name}} {{#if account.authorized}}
+                <a href="{{authPathDelete account.name}}" class="btn btn-danger badge">unauthorize</a> {{else}}
+                <a href="{{authPath account.name}}" class="btn btn-primary badge">authorize</a> {{/if}}
+            </li>
+            {{/each}}
+        </ul>
+    </div>
+    <div class="col-sm-6">
+        <ul class="list-group">
+            <li class="list-group-item active">Account Tweets</li>
+            {{#each tweets as |tweet|}}
+            <li class="list-group-item">
+                <h4>{{tweet.name}}</h4>
+                <p>{{tweet.text}}</p>
             </li>
             {{/each}}
         </ul>
